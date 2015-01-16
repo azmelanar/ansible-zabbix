@@ -1,0 +1,12 @@
+---
+# vars file for zabbix
+zabbix_agent_packages:
+  - zabbix-sender
+  - zabbix-agent
+
+zabbix_agent_service: zabbix-agent
+
+zabbix_server_packages:
+  - zabbix-server-pgsql
+
+zabbix_server_service: zabbix-server

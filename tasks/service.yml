@@ -1,0 +1,6 @@
+---
+# tasks file for zabbix services
+
+- name: make sure that service is running and enabled
+  service: name={{ zabbix_agent_service }} state=started enabled=yes
+  tags: [zabbix-agent]

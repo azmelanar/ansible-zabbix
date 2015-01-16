@@ -1,0 +1,7 @@
+---
+# tasks file for Debian
+
+- name: install package for debian system
+  apt: name={{ item }} state=present
+  with_items: zabbix_agent_packages
+  tags: [zabbix-agent]

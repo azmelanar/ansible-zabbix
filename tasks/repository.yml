@@ -1,0 +1,29 @@
+---
+- name: download release package
+  get_url:
+    url: "{{ url_package_release }}"
+    dest: "{{ package_release }}"
+  tags: [zabbix, repository]
+
+- name: install repository for debian system
+  apt: deb={{ item }} state=present
+  with_items: package_release
+  when: ansible_os_family=='Debian'
+  tags: [zabbix, repository]
+
+- name: install repository for rhel system
+  yum: name={{ item }} state=present
+  with_items: package_release
+  when: ansible_os_family=='RedHat'
+  tags: [zabbix, repository]
+
+- name: remove repository package
+  file:
+    path: "{{ package_release }}"
+    state: absent
+  tags: [zabbix, repository]
+
+- name: update packages cache
+  apt: update_cache=yes
+  when: ansible_os_family=='Debian'
+  tags: [zabbix, repository ]

@@ -1,0 +1,22 @@
+---
+# tasks file for zabbix config 
+
+- name: set zabbix-agent config file
+  template:
+    src: zabbix_agentd.conf.j2
+    dest: /etc/zabbix/zabbix_agentd.conf
+    owner: root
+    group: root
+    mode: 0640
+  notify:
+    - restart zabbix-agent
+  tags: [zabbix-agent]
+
+- name: check zabbix-agent include directory is exists
+  file:
+    path: /etc/zabbix/zabbix_agentd.d
+    owner: root
+    group: root
+    mode: 0755
+    state: directory
+  tags: [zabbix-agent]
