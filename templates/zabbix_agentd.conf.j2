@@ -136,7 +136,7 @@ ServerActive={{ zabbix_agent_ServerActive }}
 # Default:
 # Hostname=
 
-Hostname={{ zabbix_agent_Hostname }}
+Hostname={{ ansible_fqdn }}
 
 ### Option: HostnameItem
 # Item used for generating Hostname if it is undefined. Ignored if Hostname is defined.
