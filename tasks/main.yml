@@ -9,8 +9,14 @@
   include: repository.yml
   tags: [zabbix]
 
-- name: include os-specific tasks
-  include: "{{ ansible_os_family }}.yml"
+- name: include debian specific tasks
+  include: Debian.yml
+  when: ansible_os_family=='Debian'
+  tags: [zabbix]
+
+- name: include rhel specific tasks
+  include: RedHat.yml
+  when: ansible_os_family=='RedHat'
   tags: [zabbix]
 
 - name: include config tasks
