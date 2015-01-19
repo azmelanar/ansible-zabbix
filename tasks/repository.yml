@@ -1,4 +1,6 @@
 ---
+# task file for configurate repository
+
 - name: download release package
   get_url:
     url: "{{ url_package_release }}"
