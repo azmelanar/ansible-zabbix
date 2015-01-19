@@ -1,5 +1,5 @@
 ---
-# tasks file for zabbix config 
+# tasks file for configurate zabbix config files
 
 - name: set zabbix-agent config file
   template:
