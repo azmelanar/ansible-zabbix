@@ -6,7 +6,6 @@ zabbix_agent_LogFile: /var/log/zabbix/zabbix_agentd.log
 zabbix_agent_LogFileSize: 0
 zabbix_agent_Server: 127.0.0.1
 zabbix_agent_ServerActive: 127.0.0.1
-zabbix_agent_Hostname: Zabbix agent
 zabbix_agent_Timeout: 15
 zabbix_agent_Includes:
   - /etc/zabbix/zabbix_agentd.d/
