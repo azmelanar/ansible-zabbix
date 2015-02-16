@@ -1,3 +1,2 @@
 ---
 url_package_release: http://repo.zabbix.com/zabbix/2.4/debian/pool/main/z/zabbix-release/zabbix-release_2.4-1+wheezy_all.deb
-package_release: /tmp/zabbix-release.deb
