@@ -4,28 +4,42 @@
 - name: download release package
   get_url:
     url: "{{ url_package_release }}"
-    dest: "{{ package_release }}"
+    dest: /tmp/zabbix-release.deb
+  when: ansible_os_family=='Debian'
+  tags: [zabbix, repository]
+
+- name: download release package
+  get_url:
+    url: "{{ url_package_release }}"
+    dest: /tmp/zabbix-release.rpm
+  when: ansible_os_family=='RedHat'
   tags: [zabbix, repository]
 
 - name: install repository for debian system
-  apt: deb={{ item }} state=present
-  with_items: package_release
+  apt: deb=/tmp/zabbix-release.deb state=present
   when: ansible_os_family=='Debian'
   tags: [zabbix, repository]
 
 - name: install repository for rhel system
-  yum: name={{ item }} state=present
-  with_items: package_release
+  yum: name=/tmp/zabbix-release.rpm state=present
   when: ansible_os_family=='RedHat'
   tags: [zabbix, repository]
 
-- name: remove repository package
-  file:
-    path: "{{ package_release }}"
-    state: absent
-  tags: [zabbix, repository]
+#- name: remove repository package for debian system
+#  file:
+#    path: /tmp/zabbix-release.deb
+#    state: absent
+#  when: ansible_os_family=='Debian'
+#  tags: [zabbix, repository]
+#
+#- name: remove repository package for rhel system
+#  file:
+#    path: /tmp/zabbix-release.rpm
+#    state: absent
+#  when: ansible_os_family=='RedHat'
+#  tags: [zabbix, repository]
 
 - name: update packages cache
   apt: update_cache=yes
   when: ansible_os_family=='Debian'
-  tags: [zabbix, repository ]
+  tags: [zabbix, repository]
